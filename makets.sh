@@ -21,6 +21,35 @@ function help() {
     fi
 }
 
+function generate_tsc_file() {
+    filename="${1}"
+    ext="${filename#*.}"
+    file="${filename%.*}"
+
+    if [[ "${ext}" != "ts" ]] ||[[ "${ext}" == "${file}" ]]; then
+        file="${file}.ts"
+    else
+        file="${filename}"
+    fi
+    echo "console.clear()" > "${file}"
+    echo "console.log(\"Start Here!\")" >> "${file}"
+}
+
+function write_tscconfig_file() {
+    echo """
+    {
+    \"compilerOptions\": {
+        \"target\": \"ES2022\",
+        \"outDir\": \"./dist\",
+        \"rootDir\": \"./src\",
+        \"module\": \"CommonJS\"
+    }
+    }
+    """ > tsconfig.json
+    mkdir src && mkdir dist
+    generate_tsc_file src/index
+}
+
 if [[ $# != 2 ]]; then
     echo "${0}" [options] [file]
     avaliable_options
@@ -41,11 +70,17 @@ while getopts "${optstring}" opt; do
             ;;
         p)
             filename="${OPTARG}"
+            [[ -e "${filename}" ]] && echo "${filename} Exist." && exit 1
             # make project folder
             mkdir "${filename}" && cd "${filename}"
-            npm init --yes
+            npm init --yes > /dev/null 2>&1
+            write_tscconfig_file
+            tsc           # compile
+            node "./dist" # run
             ;;
         r)
+            filename="${OPTARG}"
+            node "${filename}/dist"
             ;;
         s)
             ;;
