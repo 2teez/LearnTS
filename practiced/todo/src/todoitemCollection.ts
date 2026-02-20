@@ -1,4 +1,4 @@
-import { TodoItem } from "./todoitem";
+import { TodoItem } from "./todoitem.js";
 
 type itemCount = {
   total: number;

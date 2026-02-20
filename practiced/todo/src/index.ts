@@ -1,5 +1,5 @@
-import { TodoItem } from "./todoitem";
-import { TodoCollection } from "./todoitemCollection";
+import { TodoItem } from "./todoitem.js";
+import { TodoCollection } from "./todoitemCollection.js";
 
 let todos = [
   new TodoItem(1, "Buy Flowers"),
@@ -24,5 +24,5 @@ todoItem.printDetails();
 */
 //collection.getTodoItems(true).forEach((item) => item.printDetails());
 //console.clear();
-collection.removeComplete();
+// collection.removeComplete();
 collection.getTodoItems(true).forEach((item) => item.printDetails());

@@ -1,14 +1,12 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const todoitem_1 = require("./todoitem");
-const todoitemCollection_1 = require("./todoitemCollection");
+import { TodoItem } from "./todoitem.js";
+import { TodoCollection } from "./todoitemCollection.js";
 let todos = [
-    new todoitem_1.TodoItem(1, "Buy Flowers"),
-    new todoitem_1.TodoItem(2, "Get Shoes"),
-    new todoitem_1.TodoItem(3, "Collect Tickets"),
-    new todoitem_1.TodoItem(4, "Call Joe", true),
+    new TodoItem(1, "Buy Flowers"),
+    new TodoItem(2, "Get Shoes"),
+    new TodoItem(3, "Collect Tickets"),
+    new TodoItem(4, "Call Joe", true),
 ];
-let collection = new todoitemCollection_1.TodoCollection("Adam", todos);
+let collection = new TodoCollection("Adam", todos);
 console.clear();
 //console.log(`${collection.userName}'s Todo List.`);
 console.log(`${collection.userName}'s Todo List. (${collection.getItemCounts().incomplete} item to do))`);
@@ -19,5 +17,5 @@ todoItem.printDetails();
 */
 //collection.getTodoItems(true).forEach((item) => item.printDetails());
 //console.clear();
-collection.removeComplete();
+// collection.removeComplete();
 collection.getTodoItems(true).forEach((item) => item.printDetails());
