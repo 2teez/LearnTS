@@ -1,4 +1,4 @@
-import { TodoItem } from "./todoItem";
+import { TodoItem } from "./todoitem";
 
 export class TodoCollection {
   private nextId: number = 1;
@@ -23,6 +23,12 @@ export class TodoCollection {
   getTodoById(id: number): TodoItem {
     //return this.todoItems.find((item) => item.id == id);
     return this.itemMap.get(id);
+  }
+
+  getTodoItems(includeComplete: boolean): TodoItem[] {
+    return [...this.itemMap.values()].filter(
+      (item) => includeComplete || !includeComplete,
+    );
   }
 
   markComplete(id: number, complete: boolean) {

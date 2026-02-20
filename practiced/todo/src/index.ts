@@ -1,4 +1,4 @@
-import { TodoItem } from "./todoItem";
+import { TodoItem } from "./todoitem";
 import { TodoCollection } from "./todoitemCollection";
 
 let todos = [
@@ -13,6 +13,9 @@ let collection = new TodoCollection("Adam", todos);
 console.clear();
 console.log(`${collection.userName}'s Todo List.`);
 
+/*
 let newId = collection.addTodo("Go for run");
 let todoItem = collection.getTodoById(newId);
 todoItem.printDetails();
+*/
+collection.getTodoItems(true).forEach((item) => item.printDetails());
