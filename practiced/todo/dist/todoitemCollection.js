@@ -23,7 +23,7 @@ class TodoCollection {
         return this.itemMap.get(id);
     }
     getTodoItems(includeComplete) {
-        return [...this.itemMap.values()].filter((item) => includeComplete || !includeComplete);
+        return [...this.itemMap.values()].filter((item) => includeComplete || !item.complete);
     }
     markComplete(id, complete) {
         const todoItem = this.getTodoById(id);
@@ -37,6 +37,12 @@ class TodoCollection {
                 this.itemMap.delete(item.id);
             }
         });
+    }
+    getItemCounts() {
+        return {
+            total: this.itemMap.size,
+            incomplete: this.getTodoItems(false).length,
+        };
     }
 }
 exports.TodoCollection = TodoCollection;

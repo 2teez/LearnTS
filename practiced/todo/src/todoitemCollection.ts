@@ -1,5 +1,10 @@
 import { TodoItem } from "./todoitem";
 
+type itemCount = {
+  total: number;
+  incomplete: number;
+};
+
 export class TodoCollection {
   private nextId: number = 1;
   private itemMap = new Map<number, TodoItem>();
@@ -27,7 +32,7 @@ export class TodoCollection {
 
   getTodoItems(includeComplete: boolean): TodoItem[] {
     return [...this.itemMap.values()].filter(
-      (item) => includeComplete || !includeComplete,
+      (item) => includeComplete || !item.complete,
     );
   }
 
@@ -44,5 +49,12 @@ export class TodoCollection {
         this.itemMap.delete(item.id);
       }
     });
+  }
+
+  getItemCounts(): itemCount {
+    return {
+      total: this.itemMap.size,
+      incomplete: this.getTodoItems(false).length,
+    };
   }
 }
