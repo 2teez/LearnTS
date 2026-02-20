@@ -7,7 +7,7 @@ type itemCount = {
 
 export class TodoCollection {
   private nextId: number = 1;
-  private itemMap = new Map<number, TodoItem>();
+  protected itemMap = new Map<number, TodoItem>();
 
   constructor(
     public userName: string,
@@ -25,7 +25,7 @@ export class TodoCollection {
     return this.nextId;
   }
 
-  getTodoById(id: number): TodoItem {
+  getTodoById(id: number): TodoItem | undefined {
     //return this.todoItems.find((item) => item.id == id);
     return this.itemMap.get(id);
   }
