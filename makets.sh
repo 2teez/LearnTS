@@ -9,7 +9,7 @@ function avaliable_options() {
    echo "-g:    Make a generic Typescript file."
    echo "-h:    Help Function called."
    echo "-p:    Make a Typescript Project."
-   echo "-s:    Make a standalone ts file."
+   echo "-s:    Make a Standalone ts file."
    echo "-r:    Run a Typescript file to generate a js file."
 }
 
@@ -21,7 +21,7 @@ function help() {
     fi
 }
 
-function generate_tsc_file() {
+function file_extension_checked() {
     filename="${1}"
     ext="${filename#*.}"
     file="${filename%.*}"
@@ -31,8 +31,16 @@ function generate_tsc_file() {
     else
         file="${filename}"
     fi
-    echo "console.clear()" > "${file}"
-    echo "console.log(\"Start Here!\")" >> "${file}"
+    filename="${file}"
+}
+
+function generate_tsc_file() {
+    filename="${1}"
+
+    file_extension_checked "${filename}"
+
+    echo "console.clear()" > "${filename}"
+    echo "console.log(\"Start Here!\")" >> "${filename}"
 }
 
 function write_tscconfig_file() {
@@ -83,6 +91,9 @@ while getopts "${optstring}" opt; do
             node "${filename}/dist"
             ;;
         s)
+            filename="${OPTARG}"
+            generate_tsc_file "${filename}"
+            node "${filename}"
             ;;
         h)
             ;;
