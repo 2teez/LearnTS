@@ -11,17 +11,19 @@ let todos = [
 ];
 
 let collection = new TodoCollection("Adam", todos);
-
+let showCompleted = true;
 //console.clear();
 //console.log(`${collection.userName}'s Todo List.`);
 
 function displayTodoList(): void {
   console.log(
-    `${collection.userName}'s Todo List. (${collection.getItemCounts().incomplete} item to do))`,
+    `${collection.userName}'s Todo List. (${collection.getItemCounts().incomplete} item to do)`,
   );
+  collection.getTodoItems(showCompleted).forEach((item) => item.printDetails());
 }
 
 enum Commands {
+  Toggle = "Show/Hide Completed.",
   Quit = "Quit",
 }
 
@@ -36,11 +38,22 @@ function promptUser(): void {
       choices: Object.values(Commands),
     })
     .then((answers) => {
-      if (answers["command"] !== Commands.Quit) {
-        promptUser();
+      //if (answers["command"] !== Commands.Quit) {
+      //promptUser();
+      //}
+      switch (answers["command"]) {
+        case Commands.Toggle:
+          showCompleted = !showCompleted;
+          promptUser();
+          break;
+        case Commands.Quit:
+          break;
       }
     });
 }
+
+// using the prompt
+promptUser();
 
 /*
 let newId = collection.addTodo("Go for run");
