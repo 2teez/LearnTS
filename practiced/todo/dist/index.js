@@ -58,8 +58,8 @@ function promptUser() {
             case Commands.Add:
                 promptAdd();
                 break;
-            //case Commands.Quit:
-            //break;
+            case Commands.Quit:
+                break;
         }
     });
 }
