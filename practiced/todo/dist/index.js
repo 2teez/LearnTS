@@ -17,3 +17,6 @@ let todoItem = collection.getTodoById(newId);
 todoItem.printDetails();
 */
 collection.getTodoItems(true).forEach((item) => item.printDetails());
+//console.clear();
+collection.removeComplete();
+collection.getTodoItems(true).forEach((item) => item.printDetails());
