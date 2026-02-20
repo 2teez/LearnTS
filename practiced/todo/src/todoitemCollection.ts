@@ -2,11 +2,14 @@ import { TodoItem } from "./todoItem";
 
 export class TodoCollection {
   private nextId: number = 1;
+  private itemMap = new Map<number, TodoItem>();
 
   constructor(
     public userName: string,
     public todoItems: TodoItem[] = [],
-  ) {}
+  ) {
+    todoItems.forEach((item) => this.itemMap.set(item.id, item));
+  }
 
   addTodo(task: string): number {
     while (this.getTodoById(this.nextId)) {
