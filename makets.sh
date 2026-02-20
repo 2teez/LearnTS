@@ -88,6 +88,7 @@ while getopts "${optstring}" opt; do
             ;;
         r)
             filename="${OPTARG}"
+            tsc
             node "${filename}/dist"
             ;;
         s)
