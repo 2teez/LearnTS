@@ -1,5 +1,6 @@
-import { TodoItem } from "./todoitem.js";
+import { TodoItem } from "./todoItem.js";
 import { TodoCollection } from "./todoitemCollection.js";
+import inquirer from "inquirer";
 let todos = [
     new TodoItem(1, "Buy Flowers"),
     new TodoItem(2, "Get Shoes"),
@@ -7,9 +8,31 @@ let todos = [
     new TodoItem(4, "Call Joe", true),
 ];
 let collection = new TodoCollection("Adam", todos);
-console.clear();
+//console.clear();
 //console.log(`${collection.userName}'s Todo List.`);
-console.log(`${collection.userName}'s Todo List. (${collection.getItemCounts().incomplete} item to do))`);
+function displayTodoList() {
+    console.log(`${collection.userName}'s Todo List. (${collection.getItemCounts().incomplete} item to do))`);
+}
+var Commands;
+(function (Commands) {
+    Commands["Quit"] = "Quit";
+})(Commands || (Commands = {}));
+function promptUser() {
+    console.clear();
+    displayTodoList();
+    inquirer
+        .prompt({
+        type: "list",
+        name: "command",
+        message: "Choose option:",
+        choices: Object.values(Commands),
+    })
+        .then((answers) => {
+        if (answers["command"] !== Commands.Quit) {
+            promptUser();
+        }
+    });
+}
 /*
 let newId = collection.addTodo("Go for run");
 let todoItem = collection.getTodoById(newId);
@@ -18,4 +41,4 @@ todoItem.printDetails();
 //collection.getTodoItems(true).forEach((item) => item.printDetails());
 //console.clear();
 // collection.removeComplete();
-collection.getTodoItems(true).forEach((item) => item.printDetails());
+//collection.getTodoItems(true).forEach((item) => item.printDetails());
