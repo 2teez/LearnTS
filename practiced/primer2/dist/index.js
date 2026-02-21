@@ -1,3 +1,4 @@
+import { Product } from "./product.js";
 let hat = {
     name: "Hat",
     price: 100,
@@ -12,4 +13,9 @@ hatPrototype.toString = function () {
     return `toString: ${this.name}: ${this.price}, ${this.getPriceIncTax()}`;
 };
 console.log(`${hat.toString()}`);
-export {};
+// using Product class
+let hatProduct = new Product("Hat", 100);
+let bootsProduct = new Product("Boots", 100);
+// using the js clases
+console.log(`${hatProduct.toString()}`);
+console.log(`${bootsProduct.toString()}`);
