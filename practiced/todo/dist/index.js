@@ -32,12 +32,13 @@ function getPromptAdd() {
         .prompt({
         type: "input",
         name: "add",
-        message: "add new task> ",
+        message: "Enter task> ",
     })
         .then((answers) => {
         if (answers["add"] !== "") {
-            UserPrompt();
+            collection.addTodo(answers["add"]);
         }
+        UserPrompt();
     });
 }
 function UserPrompt() {
@@ -47,19 +48,21 @@ function UserPrompt() {
         .prompt({
         type: "list",
         name: "commands",
-        message: "Choosen Options",
+        message: "Choose Options",
+        choices: Object.values(Commands),
     })
         .then((answers) => {
         switch (answers["commands"]) {
             case Commands.Quit:
+                //process.exit(0);
                 break;
             case Commands.Add:
                 getPromptAdd();
                 break;
             case Commands.Toggle:
-                if (showCompleted != !showCompleted) {
-                    UserPrompt();
-                }
+                showCompleted = !showCompleted;
+                UserPrompt();
+                break;
         }
     });
 }
