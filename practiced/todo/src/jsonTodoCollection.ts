@@ -15,7 +15,7 @@ export class JsonTodoCollection extends TodoCollection {
   ) {
     super(userName, []);
     this.database = new LowSync(new JSONFileSync("Todos.json"), {
-      TodoItem: [],
+      tasks: [],
     });
     this.database.read();
     if (this.database.data == null) {
