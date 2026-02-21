@@ -10,18 +10,40 @@ let todos = [
 ];
 
 let collection = new TodoCollection("Adam", todos);
+let showCompleted = true;
 
 function showDetails(): void {
   console.clear();
   console.log(
     `${collection.userName}'s Todo List (${todos.filter((item) => !item.complete).length} Todo)`,
   );
-  todos.forEach((item) => item.printDetails());
+  if (showCompleted) todos.forEach((item) => item.printDetails());
+  else {
+    todos
+      .filter((item) => !item.complete)
+      .forEach((item) => item.printDetails());
+  }
 }
 
 enum Commands {
   Add = "Add Task",
   Quit = "Quit",
+  Toggle = "Hide/Show Options",
+}
+
+function getPromptAdd() {
+  console.clear();
+  inquirer
+    .prompt({
+      type: "input",
+      name: "add",
+      message: "add new task> ",
+    })
+    .then((answers) => {
+      if (answers["add"] !== "") {
+        UserPrompt();
+      }
+    });
 }
 
 function UserPrompt(): void {
@@ -37,6 +59,13 @@ function UserPrompt(): void {
       switch (answers["commands"]) {
         case Commands.Quit:
           break;
+        case Commands.Add:
+          getPromptAdd();
+          break;
+        case Commands.Toggle:
+          if (showCompleted != !showCompleted) {
+            UserPrompt();
+          }
       }
     });
 }

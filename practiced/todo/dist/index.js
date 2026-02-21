@@ -8,16 +8,38 @@ let todos = [
     new TodoItem(4, "Call Joe", true),
 ];
 let collection = new TodoCollection("Adam", todos);
+let showCompleted = true;
 function showDetails() {
     console.clear();
     console.log(`${collection.userName}'s Todo List (${todos.filter((item) => !item.complete).length} Todo)`);
-    todos.forEach((item) => item.printDetails());
+    if (showCompleted)
+        todos.forEach((item) => item.printDetails());
+    else {
+        todos
+            .filter((item) => !item.complete)
+            .forEach((item) => item.printDetails());
+    }
 }
 var Commands;
 (function (Commands) {
     Commands["Add"] = "Add Task";
     Commands["Quit"] = "Quit";
+    Commands["Toggle"] = "Hide/Show Options";
 })(Commands || (Commands = {}));
+function getPromptAdd() {
+    console.clear();
+    inquirer
+        .prompt({
+        type: "input",
+        name: "add",
+        message: "add new task> ",
+    })
+        .then((answers) => {
+        if (answers["add"] !== "") {
+            UserPrompt();
+        }
+    });
+}
 function UserPrompt() {
     console.clear();
     showDetails();
@@ -31,6 +53,13 @@ function UserPrompt() {
         switch (answers["commands"]) {
             case Commands.Quit:
                 break;
+            case Commands.Add:
+                getPromptAdd();
+                break;
+            case Commands.Toggle:
+                if (showCompleted != !showCompleted) {
+                    UserPrompt();
+                }
         }
     });
 }

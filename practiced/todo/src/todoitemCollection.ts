@@ -16,7 +16,7 @@ export class TodoCollection {
     return this.nextId;
   }
 
-  getTodoById(id: number): TodoItem {
+  getTodoById(id: number): TodoItem | undefined {
     return this.todoItems.find((item) => item.id == id);
   }
 
