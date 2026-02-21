@@ -1,3 +1,4 @@
+import { TaxedProduct } from "./product.js";
 import { Product } from "./product.js";
 let hat = {
     name: "Hat",
@@ -15,7 +16,9 @@ hatPrototype.toString = function () {
 console.log(`${hat.toString()}`);
 // using Product class
 let hatProduct = new Product("Hat", 100);
-let bootsProduct = new Product("Boots", 100);
+let bootsProduct = new Product("Boots", 200);
 // using the js clases
 console.log(`${hatProduct.toString()}`);
 console.log(`${bootsProduct.toString()}`);
+//
+TaxedProduct.process(new TaxedProduct("Hat", 100, 1.2), new TaxedProduct("Boots", 100));
