@@ -7,8 +7,16 @@ let todos = [
     new TodoItem(4, "Call Joe", true),
 ];
 let collection = new TodoCollection("Adam", todos);
-console.clear();
+function showDetails() {
+    console.clear();
+    console.log(`${collection.userName}'s Todo List (${todos.filter((item) => !item.complete).length} Todo)`);
+    todos.forEach((item) => item.printDetails());
+}
+/*console.clear();
 console.log(`${collection.userName}'s Todo List.`);
+
 let newId = collection.addTodo("Go for run");
 let todoItem = collection.getTodoById(newId);
 todoItem.printDetails();
+*/
+showDetails();
