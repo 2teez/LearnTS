@@ -66,3 +66,13 @@ export function createProductIterator() {
     },
   };
 }
+
+function* createProductGenerator() {
+  yield new Product("hat", 100);
+  yield new Product("boot", 100);
+  yield new Product("umberalla", 23);
+}
+
+export const util = {
+  gen: createProductGenerator,
+};

@@ -1,5 +1,4 @@
-import { createProductIterator, TaxedProduct } from "./product.js";
-import { Product } from "./product.js";
+import { createProductIterator, Product, TaxedProduct, util, } from "./product.js";
 let hat = {
     name: "Hat",
     price: 100,
@@ -28,4 +27,11 @@ let result = iterator.next();
 while (!result.done) {
     console.log(`${result.value}`);
     result = iterator.next();
+}
+// using generator
+let generator = util.gen();
+let genResult = generator.next();
+while (!genResult.done) {
+    console.log(`${genResult.value}`);
+    genResult = generator.next();
 }
