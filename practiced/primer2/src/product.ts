@@ -29,3 +29,40 @@ export class TaxedProduct extends Product {
     product.forEach((product) => console.log(product.toString()));
   }
 }
+export function createProductIterator() {
+  const hat = new Product("hat", 100);
+  const boots = new Product("boot", 100);
+  const umeralla = new Product("umberalla", 23);
+
+  let nextVal;
+  return {
+    next() {
+      switch (nextVal) {
+        case undefined:
+          nextVal = hat;
+          return {
+            value: hat,
+            done: false,
+          };
+        case hat:
+          nextVal = boots;
+          return {
+            value: boots,
+            done: false,
+          };
+        case boots:
+          nextVal = umeralla;
+          return {
+            value: umeralla,
+            done: false,
+          };
+        case umeralla:
+          nextVal = boots;
+          return {
+            value: undefined,
+            done: true,
+          };
+      }
+    },
+  };
+}

@@ -1,4 +1,4 @@
-import { TaxedProduct } from "./product.js";
+import { createProductIterator, TaxedProduct } from "./product.js";
 import { Product } from "./product.js";
 let hat = {
     name: "Hat",
@@ -22,3 +22,10 @@ console.log(`${hatProduct.toString()}`);
 console.log(`${bootsProduct.toString()}`);
 //
 TaxedProduct.process(new TaxedProduct("Hat", 100, 1.2), new TaxedProduct("Boots", 100));
+// using iterator
+let iterator = createProductIterator();
+let result = iterator.next();
+while (!result.done) {
+    console.log(`${result.value}`);
+    result = iterator.next();
+}
