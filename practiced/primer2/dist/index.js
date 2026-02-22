@@ -35,3 +35,19 @@ while (!genResult.done) {
     console.log(`${genResult.value}`);
     genResult = generator.next();
 }
+// using object in js/ts
+let data = {
+    hat: new Product("Hat", 100),
+    boots: new Product("boots", 100),
+};
+//
+// below works in plain js
+//data.boots = new Product("boots", 100);
+Object.keys(data).forEach((key) => console.log(`${data[key]}`));
+Object.values(data).forEach((value) => console.log(`${value}`));
+// usisng map
+let myMap = new Map();
+myMap.set("hat", new Product("hat", 100));
+myMap.set("boots", new Product("boot", 100));
+// print it all out
+[...myMap.keys()].forEach((key) => console.log(`${myMap.get(key).toString()}`));
