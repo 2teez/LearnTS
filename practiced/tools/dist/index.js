@@ -1,5 +1,6 @@
+import printAll, { sum } from "./summation.js";
 function printMessage(message) {
     console.log(`Message: ${message}`);
 }
 printMessage("Hello, TypeScript.");
-export {};
+printAll(sum(200, 300, 45).toString());
