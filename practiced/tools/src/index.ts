@@ -5,4 +5,4 @@ function printMessage(message: string): void {
 }
 
 printMessage("Hello, TypeScript.");
-printAll(sum(200, 300, 45).toString());
+printAll(sum(200, 300, 100).toString());
