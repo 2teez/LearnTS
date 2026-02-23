@@ -11,6 +11,7 @@ function avaliable_options() {
    echo "-p:    Make a Typescript Project."
    echo "-s:    Make a Standalone ts file."
    echo "-r:    Run a Typescript file to generate a js file."
+   echo "-t:    Run a unit test by using jest framework and other needed files."
 }
 
 function help() {
@@ -58,6 +59,26 @@ function write_tscconfig_file() {
     generate_tsc_file src/index
 }
 
+function make_jest_config_file() {
+cat<<'JEST-CONFIG' > jest.config.cjs
+    /** @type {import('jest').Config} */
+    module.exports = {
+      roots: ["src"],
+      preset: "ts-jest/presets/default-esm",
+      testEnvironment: "node",
+      extensionsToTreatAsEsm: [".ts"],
+      moduleNameMapper: {
+        "^(\\.{1,2}/.*)\\.js$": "$1",
+      },
+      globals: {
+        "ts-jest": {
+          useESM: true,
+        },
+      },
+    };
+JEST-CONFIG
+}
+
 if [[ $# != 2 ]]; then
     echo "${0}" [options] [file]
     avaliable_options
@@ -66,7 +87,7 @@ fi
 
 # function to check the file extention
 
-optstring="d:g:p:r:s:h"
+optstring="d:g:p:r:s:t:h"
 while getopts "${optstring}" opt; do
     case "${opt}" in
         d)
@@ -95,6 +116,25 @@ while getopts "${optstring}" opt; do
             filename="${OPTARG}"
             generate_tsc_file "${filename}"
             node "${filename}"
+            ;;
+        t)
+            echo "\n------------------------------------------------------------"
+            echo "Create the xxx.ts/xxx.js file to be tested in the src folder."
+            echo "Moved the xxx.test.ts created for you into the src folder."
+            echo "\"jest.config.cjs\" file also created for you should remmain in the root folder."
+            echo "Press Enter when ready!"
+            echo "------------------------------------------------------------"
+            read
+            filename="${OPTARG}"
+            filename="${filename%.*}.test.ts"
+            touch "${filename}"
+            make_jest_config_file
+            # install jest && ts-jest plugins
+            npm install --save-dev jest
+            npm install --save-dev ts-jest
+            npm install --save-dev @types/jest
+            # run a test file
+            npx jest --watchAll
             ;;
         h)
             ;;
