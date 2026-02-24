@@ -104,6 +104,10 @@ while getopts "${optstring}" opt; do
             mkdir "${filename}" && cd "${filename}"
             npm init --yes > /dev/null 2>&1
             write_tscconfig_file
+            # install tsc
+            npm install --save-dev typescript@latest
+            npm install --save-dev @types/typescript
+            npm install --save-dev tsc-watch
             tsc           # compile
             node "./dist" # run
             ;;
