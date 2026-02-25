@@ -6,3 +6,13 @@ const socks = { name: "Socks", price: 100 };
 const shoes = { name: "Shoes", price: 100 };
 let products = [hat, boots, gloves, socks, shoes];
 products.forEach((product) => console.log(printDetails(product)));
+//
+// using object literals
+let productsArr = [
+    shoes,
+    socks,
+    gloves,
+    boots,
+    hat,
+];
+productsArr.forEach((product) => console.log(printDetails(product)));
