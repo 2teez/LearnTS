@@ -5,5 +5,8 @@ export function toTitleCase(str) {
         .join(" ");
 }
 export function countWords(str) {
-    return str.replace(/\s+/g, " ").trim().split(" ").length;
+    return str
+        .replace(/[_\- ]/g, " ")
+        .trim()
+        .split(" ").length;
 }

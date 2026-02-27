@@ -6,5 +6,12 @@ export function toTitleCase(str: string): string {
 }
 
 export function countWords(str: string): number {
-  return str.replace(/\s+/g, " ").trim().split(" ").length;
+  return str
+    .replace(/[_\- ]/g, " ")
+    .trim()
+    .split(" ").length;
+}
+
+export function toWords(str: string): number {
+  return str.replace(/[_\- ]/g, " ").split(" ").length;
 }
