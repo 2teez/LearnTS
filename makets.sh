@@ -91,6 +91,19 @@ optstring="d:g:p:r:s:t:h"
 while getopts "${optstring}" opt; do
     case "${opt}" in
         d)
+            file="${OPTARG}"
+            echo "Do you want to delete ${file}? (y/n)"
+            read -r answer
+            if [[ "${answer}" == "y" ]]; then
+                if [[ -d "${file}" ]]; then
+                    rm -rf "${file}"
+                else
+                    rm "${file}"
+                fi
+                echo "${file} deleted."
+            else
+                echo "${file} not deleted."
+            fi
             ;;
         h)
             help
