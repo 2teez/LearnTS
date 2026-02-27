@@ -12,6 +12,11 @@ export function countWords(str: string): number {
     .split(" ").length;
 }
 
-export function toWords(str: string): number {
-  return str.replace(/[_\- ]/g, " ").split(" ").length;
+export function toWords(str: string): string[] {
+  return str.replace(/[_\- ]/g, " ").split(" ");
 }
+
+export const repeat = (str: string, times: number = 0): string => {
+  if (times <= 0) return "";
+  return str + repeat(str, times - 1);
+};
