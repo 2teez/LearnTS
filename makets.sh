@@ -58,6 +58,13 @@ function write_tscconfig_file() {
     mkdir src && mkdir dist
     generate_tsc_file src/index
 }
+function make_test_file() {
+    filename="${1}"
+    file_extension_checked "${filename}"
+    echo "describe(\"${file}\", () => {" > "${filename}"
+    echo "  it(\"should  \", () => {});" >> "${filename}"
+    echo "});" >> "${filename}"
+}
 
 function make_jest_config_file() {
 cat<<'JEST-CONFIG' > jest.config.cjs
@@ -136,16 +143,14 @@ while getopts "${optstring}" opt; do
             node "${filename}"
             ;;
         t)
-            echo "\n------------------------------------------------------------"
-            echo "Create the xxx.ts/xxx.js file to be tested in the src folder."
-            echo "Moved the xxx.test.ts created for you into the src folder."
-            echo "\"jest.config.cjs\" file also created for you should remmain in the root folder."
+            echo "\n----------------------------------------------------------"
             echo "Press Enter when ready!"
             echo "------------------------------------------------------------"
             read
             filename="${OPTARG}"
             filename="${filename%.*}.test.ts"
-            touch "${filename}"
+            touch "${filename}" && mv "${filename}" src/
+            make_test_file "src/${filename}"
             make_jest_config_file
             # install jest && ts-jest plugins
             npm install --save-dev jest
