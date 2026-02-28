@@ -120,7 +120,7 @@ while getopts "${optstring}" opt; do
             write_tscconfig_file
             # install tsc
             npm install --save-dev typescript@latest
-            npm install --save-dev @types/typescript
+            # npm install --save-dev @types/typescript
             npm install --save-dev tsc-watch
             tsc           # compile
             node "./dist" # run
