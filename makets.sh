@@ -62,7 +62,9 @@ function make_test_file() {
     filename="${1}"
     file_extension_checked "${filename}"
     echo "describe(\"${file}\", () => {" > "${filename}"
-    echo "  it(\"should  \", () => {});" >> "${filename}"
+    echo "  test(\"add 2 + 2 = 4\", () => {
+    expect(2 + 2).toBe(4);
+    });" >> "${filename}"
     echo "});" >> "${filename}"
 }
 
