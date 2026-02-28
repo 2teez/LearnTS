@@ -115,6 +115,7 @@ while getopts "${optstring}" opt; do
             [[ -e "${filename}" ]] && echo "${filename} Exist." && exit 1
             # make project folder
             mkdir "${filename}" && cd "${filename}"
+            mkdir types && cd types && touch index.d.ts && cd .. # make types folder for type declarations
             npm init --yes > /dev/null 2>&1
             write_tscconfig_file
             # install tsc
