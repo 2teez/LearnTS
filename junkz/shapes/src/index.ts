@@ -1,2 +1,15 @@
-console.clear()
-console.log("Start Here!")
+import { Circle, Rectangle, Square, RightTriangle } from "./shapes.js";
+import { Shape } from "Shapes";
+
+const getArea = (shape: Shape): number => {
+  return shape.area();
+};
+
+const rectangle = new Rectangle(4, 5);
+console.log(`${rectangle.type}: ${getArea(rectangle)}`); // 20
+
+const square = new Square(3);
+console.log(`${square.type}: ${getArea(square)}`); // 9
+
+const triangle = new RightTriangle(3, 4);
+console.log(`${triangle.type}: ${getArea(triangle)}`); // 6
