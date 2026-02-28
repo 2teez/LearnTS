@@ -18,3 +18,9 @@ export const repeat = (str, times = 0) => {
         return "";
     return str + repeat(str, times - 1);
 };
+export const isAlpha = (str) => {
+    return /^[a-zA-Z]+$/.test(str);
+};
+export const isBlank = (str) => {
+    return /^\s*$/.test(str);
+};

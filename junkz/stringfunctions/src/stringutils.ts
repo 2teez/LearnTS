@@ -20,3 +20,11 @@ export const repeat = (str: string, times: number = 0): string => {
   if (times <= 0) return "";
   return str + repeat(str, times - 1);
 };
+
+export const isAlpha = (str: string): boolean => {
+  return /^[a-zA-Z]+$/.test(str);
+};
+
+export const isBlank = (str: string): boolean => {
+  return /^\s*$/.test(str);
+};
