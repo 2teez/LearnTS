@@ -1,4 +1,4 @@
-import { Rectangle, Square, RightTriangle } from "./shapes.js";
+import { Circle, Rectangle, Square, RightTriangle } from "./shapes.js";
 const getArea = (shape) => {
     return shape.area();
 };
@@ -8,3 +8,5 @@ const square = new Square(3);
 console.log(`${square.type}: ${getArea(square)}`); // 9
 const triangle = new RightTriangle(3, 4);
 console.log(`${triangle.type}: ${getArea(triangle)}`); // 6
+const circle = new Circle(2);
+console.log(`${circle.type}: ${getArea(circle)}`); // 12.566370614359172
