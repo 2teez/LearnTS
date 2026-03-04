@@ -1,4 +1,5 @@
 export class Data {
+    // added generic type parameter with constructor
     data = [];
     //constructor(public data: T[]) {}
     get(index = 0) {
@@ -33,6 +34,9 @@ export class Data {
     }
     printAll() {
         this.data.forEach((item) => console.log(item));
+    }
+    forEach(callback) {
+        this.data.forEach(callback);
     }
 }
 export class Product {

@@ -1,4 +1,5 @@
-export class Data<T> {
+export class Data<T extends Person | Product> {
+  // added generic type parameter with constructor
   private data: T[] = [];
   //constructor(public data: T[]) {}
 
@@ -41,6 +42,10 @@ export class Data<T> {
 
   public printAll(): void {
     this.data.forEach((item) => console.log(item));
+  }
+
+  public forEach(callback: (item: T) => void): void {
+    this.data.forEach(callback);
   }
 }
 
