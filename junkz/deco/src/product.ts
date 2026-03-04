@@ -1,4 +1,4 @@
-import { time } from "./methodDecorators.js";
+import { time } from "./methodDecorator.js";
 
 export class Product {
   constructor(
