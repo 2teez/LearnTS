@@ -4,7 +4,7 @@
     "outDir": "./dist",
     "rootDir": "./src",
     "module": "Node16",
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
+    //"experimentalDecorators": true,
+    //"emitDecoratorMetadata": true,
   },
 }
