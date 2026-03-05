@@ -8,3 +8,4 @@ console.log(product.getDetails());
 
 console.log(`Get Product tax: ${product.tax}`);
 product.tax = 30;
+console.log(`Get Product tax: ${product.tax}`);
