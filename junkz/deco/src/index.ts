@@ -5,3 +5,6 @@ let city = new City("London", 8_982_000);
 let product = new Product("Kayak", 275);
 console.log(city.getSummary());
 console.log(product.getDetails());
+
+console.log(`Get Product tax: ${product.tax}`);
+product.tax = 30;

@@ -1,5 +1,6 @@
 import { time } from "./methodDecorator.js";
 import { log } from "./methodDecorator.js";
+import { double } from "./methodDecorator.js";
 
 export class Product {
   @double

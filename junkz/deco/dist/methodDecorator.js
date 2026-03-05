@@ -23,10 +23,10 @@ export function log(accessor, ctx) {
         }
     };
 }
-export function double(field, ctx) {
+export function double(notused, ctx) {
     const name = String(ctx.name);
-    return function (notused, ...args) {
-        console.log(`${name} called with ${args}`);
-        return field.call(this, ...args) * 2;
+    return function (value) {
+        console.log(`${name}`);
+        return value * 2;
     };
 }

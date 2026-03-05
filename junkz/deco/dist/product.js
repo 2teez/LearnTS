@@ -34,6 +34,7 @@ var __esDecorate = (this && this.__esDecorate) || function (ctor, descriptorIn, 
 };
 import { time } from "./methodDecorator.js";
 import { log } from "./methodDecorator.js";
+import { double } from "./methodDecorator.js";
 let Product = (() => {
     let _instanceExtraInitializers = [];
     let _taxRate_decorators;

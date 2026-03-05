@@ -27,10 +27,13 @@ export function log(
   };
 }
 
-export function double(field: any, ctx: ClassFieldDecoratorContext) {
+export function double<This, FieldType extends number>(
+  notused: any,
+  ctx: ClassFieldDecoratorContext<This, FieldType>,
+) {
   const name = String(ctx.name);
-  return function (notused: any, ...args: any[]) {
-    console.log(`${name} called with ${args}`);
-    return field.call(this, ...args) * 2;
+  return function (value: FieldType) {
+    console.log(`${name}`);
+    return value * 2;
   };
 }
