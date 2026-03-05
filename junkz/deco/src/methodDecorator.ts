@@ -26,3 +26,11 @@ export function log(
     }
   };
 }
+
+export function double(field: any, ctx: ClassFieldDecoratorContext) {
+  const name = String(ctx.name);
+  return function (notused: any, ...args: any[]) {
+    console.log(`${name} called with ${args}`);
+    return field.call(this, ...args) * 2;
+  };
+}
