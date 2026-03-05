@@ -33,19 +33,33 @@ var __esDecorate = (this && this.__esDecorate) || function (ctor, descriptorIn, 
     done = true;
 };
 import { time } from "./methodDecorator.js";
+import { log } from "./methodDecorator.js";
 let Product = (() => {
     let _instanceExtraInitializers = [];
+    let _taxRate_decorators;
+    let _taxRate_initializers = [];
+    let _taxRate_extraInitializers = [];
     let _getDetails_decorators;
+    let _get_tax_decorators;
+    let _set_tax_decorators;
     return class Product {
         static {
             const _metadata = typeof Symbol === "function" && Symbol.metadata ? Object.create(null) : void 0;
+            _taxRate_decorators = [double];
             _getDetails_decorators = [time];
+            _get_tax_decorators = [log];
+            _set_tax_decorators = [log];
             __esDecorate(this, null, _getDetails_decorators, { kind: "method", name: "getDetails", static: false, private: false, access: { has: obj => "getDetails" in obj, get: obj => obj.getDetails }, metadata: _metadata }, null, _instanceExtraInitializers);
+            __esDecorate(this, null, _get_tax_decorators, { kind: "getter", name: "tax", static: false, private: false, access: { has: obj => "tax" in obj, get: obj => obj.tax }, metadata: _metadata }, null, _instanceExtraInitializers);
+            __esDecorate(this, null, _set_tax_decorators, { kind: "setter", name: "tax", static: false, private: false, access: { has: obj => "tax" in obj, set: (obj, value) => { obj.tax = value; } }, metadata: _metadata }, null, _instanceExtraInitializers);
+            __esDecorate(null, null, _taxRate_decorators, { kind: "field", name: "taxRate", static: false, private: false, access: { has: obj => "taxRate" in obj, get: obj => obj.taxRate, set: (obj, value) => { obj.taxRate = value; } }, metadata: _metadata }, _taxRate_initializers, _taxRate_extraInitializers);
             if (_metadata) Object.defineProperty(this, Symbol.metadata, { enumerable: true, configurable: true, writable: true, value: _metadata });
         }
         name = __runInitializers(this, _instanceExtraInitializers);
         price;
+        taxRate = __runInitializers(this, _taxRate_initializers, 20);
         constructor(name, price) {
+            __runInitializers(this, _taxRate_extraInitializers);
             this.name = name;
             this.price = price;
         }
@@ -54,6 +68,12 @@ let Product = (() => {
         }
         getPrice() {
             return this.price;
+        }
+        get tax() {
+            return (this.price * this.taxRate) / 100;
+        }
+        set tax(value) {
+            this.taxRate = value;
         }
     };
 })();
