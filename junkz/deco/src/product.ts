@@ -10,4 +10,8 @@ export class Product {
   getDetails(): string {
     return `Name: ${this.name}, Price: $${this.price}`;
   }
+
+  getPrice(): number {
+    return this.price;
+  }
 }

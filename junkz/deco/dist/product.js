@@ -52,6 +52,9 @@ let Product = (() => {
         getDetails() {
             return `Name: ${this.name}, Price: $${this.price}`;
         }
+        getPrice() {
+            return this.price;
+        }
     };
 })();
 export { Product };
